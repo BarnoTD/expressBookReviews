@@ -59,4 +59,58 @@ public_users.get('/review/:isbn',function (req, res) {
   res.send("No ISBN provided");
 });
 
+//Creating a promise method to get all books
+const axios = require('axios').default;
+async function getAllBooks(url){
+  try {const res = await axios.get(url);
+  const books = res.data;
+  console.log(books);}
+  catch (err){
+    console.log(err.toString())
+  }
+  console.log("-------------------------------------");
+}
+
+//Creating a promise method to get a book based on ISBN
+async function getBookByISBN(url){
+  try {
+    const res = await axios.get(url);
+  const book = res.data;
+  console.log(book);}
+  catch (err){
+    console.log(err.toString())
+  }
+  console.log("-------------------------------------");
+}
+
+//Creating a promise method to get books based on Author
+async function getBooksByAuthor(url){
+  try {
+    const res = await axios.get(url);
+    const books = res.data;
+    console.log(books)
+  } catch (error) {
+    console.log(error.toString());
+  }
+  console.log("-------------------------------------");
+}
+
+//Creating a promise method to get books based on Title
+
+async function getBooksByTitle(url){
+  try{
+    const res = await axios.get(url);
+    books = res.data;
+    console.log(books);
+  }catch(error){
+    console.log(error.toString());
+  }
+}
+
+
+getAllBooks("http://localhost:5000/");
+getBookByISBN("http://localhost:5000/isbn/1");
+getBooksByAuthor("http://localhost:5000/author/Unknown");
+getBooksByTitle("http://localhost:5000/title/Molloy, Malone Dies, The Unnamable, the trilogy");
+
 module.exports.general = public_users;
